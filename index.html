@@ -34,10 +34,20 @@
 			var page = document.querySelector(".page");
 
 			function disabledNo(){
-				if(valueLogin.value.length !== 0 && valuePassword.value.length == localStorage.password.length){
+				if(valueLogin.value.length !== 0 && valuePassword.value.length >= localStorage.password.length){
 					button.removeAttribute("disabled");
 					button.classList.add("form__submit--active");
 					button.setAttribute("value", "Войти");
+				}
+
+				else if(valueLogin.value.length == 0){
+					button.classList.remove("form__submit--active");
+					button.setAttribute("value", "Введите логин и пароль");
+				}
+
+				else if(valuePassword.value.length < localStorage.password.length){
+					button.classList.remove("form__submit--active");
+					button.setAttribute("value", "Введите логин и пароль");
 				}
 			}
 
@@ -62,7 +72,7 @@
 					valuePassword.classList.add("form__field--invalid");
 					valuePassword.setAttribute("placeholder", "Вы ввели не верный пароль");
 					button.classList.remove("form__submit--active");
-					button.setAttribute("value", "Введите пароль");
+					button.setAttribute("value", "Введите логин и пароль");
 				}
 			});
 		</script>
