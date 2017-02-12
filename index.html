@@ -38,6 +38,7 @@
 					button.removeAttribute("disabled");
 					button.classList.add("form__submit--active");
 					button.setAttribute("value", "Войти");
+					button.focus()
 				}
 
 				else if(valueLogin.value.length == 0){
@@ -60,7 +61,7 @@
 				valuePassword.classList.remove("form__field--invalid");
 			});
 
-			button.addEventListener("click", function(){
+			function goForm(){
 				if(localStorage.password == valuePassword.value){
 					page.classList.add("page--active");
 					form.classList.add("form--remove");
@@ -74,7 +75,21 @@
 					button.classList.remove("form__submit--active");
 					button.setAttribute("value", "Введите логин и пароль");
 				}
+			}
+
+			button.addEventListener("click", function(){
+				goForm();
 			});
+
+			button.addEventListener("keyup", function(e){
+				if(e.keyCode == 13){
+					goForm();
+				}
+			});
+
+
+
+
 		</script>
 	</body>
 </html>
